@@ -18,8 +18,8 @@ Because this repo uses a plain static app, GitHub Pages displays the app directl
 
 ```sql
 create table if not exists public.diary_profiles (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid not null unique references auth.users(id) on delete cascade,
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  client_name text,
   diary_data jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -72,7 +72,7 @@ The app includes a v4 cache/version marker and no service worker, which helps av
 ## Data model notes
 
 - Current app data version: `4`.
-- Supabase stores the full diary object in `public.diary_profiles.diary_data` as JSONB.
+- Supabase stores one row per authenticated user, keyed by `public.diary_profiles.user_id`, with the full diary object in `public.diary_profiles.diary_data` as JSONB.
 - `localStorage` is retained as an offline fallback draft cache.
 - Supabase auth persists the browser session in `localStorage`, so users stay logged in until they explicitly log out or clear browser data.
 - JSON export/import remains available as a safety backup.
