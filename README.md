@@ -45,6 +45,19 @@ create policy "Users can update own diary"
 
 Only use the Supabase anon public key in the frontend. Never commit a service role key, database password, JWT secret, real backup JSON, or personal data.
 
+### Supabase Authentication URL Configuration
+
+In the Supabase dashboard, check **Authentication → URL Configuration** and set these values so confirmation and reset emails return to the GitHub Pages app instead of localhost:
+
+- **Site URL:** `https://connorharleywork.github.io/Dante-s-Fitness-Diary/`
+- **Redirect URLs:**
+  - `https://connorharleywork.github.io/Dante-s-Fitness-Diary/`
+  - `https://connorharleywork.github.io/Dante-s-Fitness-Diary/**`
+  - `https://connorharleywork.github.io/Dante-s-Fitness-Diary/?verified=true`
+  - `https://connorharleywork.github.io/Dante-s-Fitness-Diary/?reset=true`
+
+The frontend sign-up flow uses the `?verified=true` redirect, and the password reset flow uses the `?reset=true` redirect.
+
 ## Deployment
 
 No build step is required.
