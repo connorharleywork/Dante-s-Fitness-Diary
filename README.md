@@ -61,6 +61,7 @@ The app includes a v4 cache/version marker and no service worker, which helps av
 - Current app data version: `4`.
 - Supabase stores the full diary object in `public.diary_profiles.diary_data` as JSONB.
 - `localStorage` is retained as an offline fallback draft cache.
+- Supabase auth persists the browser session in `localStorage`, so users stay logged in until they explicitly log out or clear browser data.
 - JSON export/import remains available as a safety backup.
 - v3 imports are automatically migrated to v4.
 - Legacy v3 meal arrays are preserved in `legacyMealLogs` and shown only in a collapsed old meal history section.
