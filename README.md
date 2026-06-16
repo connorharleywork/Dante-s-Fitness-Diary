@@ -41,11 +41,9 @@ create policy "Users can update own diary"
   with check (auth.uid() = user_id);
 ```
 
-4. In `index.html`, replace these placeholders near the top of the script with your project values:
-   - `SUPABASE_URL_HERE`
-   - `SUPABASE_ANON_KEY_HERE`
+4. `index.html` contains the public Supabase URL and anon public key used by the static app.
 
-Only use the Supabase anon public key in the frontend. Never commit a service role key, database password, real backup JSON, or personal data.
+Only use the Supabase anon public key in the frontend. Never commit a service role key, database password, JWT secret, real backup JSON, or personal data.
 
 ## Deployment
 
